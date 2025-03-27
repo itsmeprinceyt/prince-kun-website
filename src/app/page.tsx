@@ -80,11 +80,11 @@ export default function Home() {
       <div ref={page1Ref} className="h-screen bg-gradient-to-b from-black to-black/90 flex justify-center items-center">
         <div className="text-white flex justify-center items-center flex-col text-center gap-2">
 
-          <div className="text-5xl font-extrabold bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent">
+          <div className="sm:text-5xl text-3xl font-extrabold bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent">
             ItsMe Prince Shop
           </div>
 
-          <div className="font-extralight text-sm w-[500px] animate-pulse">
+          <div className="font-extralight text-sm sm:w-[500px] w-[350px] animate-pulse">
             A place where you can purchase in-game items for cheap! Purchase items, earn referral tickets and use those tickets to get discount on your next purchase!!
           </div>
 
@@ -136,8 +136,8 @@ export default function Home() {
       <div ref={page3Ref} className="h-screen bg-gradient-to-b from-black to-black/90 flex justify-center items-center">
         <div className="grid sm:grid-cols-3 grid-cols-2  gap-5">
 
-          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold h-[130px]">
+          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
               Available 24/7
             </div>
             <div className="text-lg">
@@ -145,8 +145,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold h-[130px]">
+          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
               Scam-Proof Service
             </div>
             <div className="text-lg">
@@ -154,8 +154,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold h-[130px]">
+          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
               Money-Back Guarantee
             </div>
             <div className="text-lg">
@@ -163,8 +163,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold h-[130px]">
+          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
               Wide Selection of Items
             </div>
             <div className="text-lg">
@@ -172,8 +172,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold h-[130px]">
+          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
               Fast & Reliable Delivery
             </div>
             <div className="text-lg">
@@ -181,8 +181,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold h-[130px]">
+          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
               Dedicated Customer Support
             </div>
             <div className="text-lg">
