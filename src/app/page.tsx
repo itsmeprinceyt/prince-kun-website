@@ -25,7 +25,7 @@ export default function Home() {
   const page4Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch("/api/users")
+    fetch("https://prince-kun-website-backend.onrender.com/api/users")
       .then((res) => res.json())
       .then((data) => {
         const sortedUsers = data.sort((a: User, b: User) => b.spv - a.spv);
