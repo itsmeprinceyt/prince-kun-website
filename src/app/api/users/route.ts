@@ -23,6 +23,7 @@ async function fetchDiscordNames(userId: string): Promise<string | null> {
         return null;
     }
 }
+
 export async function GET() {
     let connection;
     try {

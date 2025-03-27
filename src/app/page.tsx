@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
+import MadeByMe from "@/(components)/MadeByMe";
 
 interface User {
   id: number;
@@ -16,6 +18,12 @@ interface User {
 export default function Home() {
   const [users, setUsers] = useState<User[]>([]);
 
+  const [activePage, setActivePage] = useState(1);
+  const page1Ref = useRef<HTMLDivElement>(null);
+  const page2Ref = useRef<HTMLDivElement>(null);
+  const page3Ref = useRef<HTMLDivElement>(null);
+  const page4Ref = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     fetch("/api/users")
       .then((res) => res.json())
@@ -26,56 +34,186 @@ export default function Home() {
       .catch((err) => console.error("Failed to load users:", err));
   }, []);
 
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+    if (page1Ref.current && scrollPosition >= page1Ref.current.offsetTop && scrollPosition < page2Ref.current!.offsetTop) {
+      setActivePage(1);
+    } else if (page2Ref.current && scrollPosition >= page2Ref.current.offsetTop && scrollPosition < page3Ref.current!.offsetTop) {
+      setActivePage(2);
+    } else if (page3Ref.current && scrollPosition >= page3Ref.current.offsetTop && scrollPosition < page4Ref.current!.offsetTop) {
+      setActivePage(3);
+    } else if (page4Ref.current && scrollPosition >= page4Ref.current.offsetTop) {
+      setActivePage(4);
+    }
+  };
+
+  const scrollToPage = (page: number) => {
+    const pageRefs = [page1Ref, page2Ref, page3Ref, page4Ref];
+    pageRefs[page - 1].current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div>
+      <div className="fixed bottom-1 left-1/2 transform -translate-x-1/2">
+        <MadeByMe />
+      </div>
+      <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-black text-purple-500 p-2 px-3 rounded-lg shadow-lg flex gap-2 z-10">
+        {[1, 2, 3, 4].map((num) => (
+          <button
+            key={num}
+            onClick={() => scrollToPage(num)}
+            className={`text-sm hover:scale-110 w-[25px] h-[25px] rounded-lg transition ${activePage === num ? "bg-purple-600 text-white shadow-lg scale-110" : "bg-white/10"
+              }`}
+          >
+            {num}
+          </button>
+        ))}
+      </div>
 
       {/* Page 1 */}
-      <div className="h-screen bg-slate-800">
-        Hello
-        <h1>Users</h1>
+      <div ref={page1Ref} className="h-screen bg-gradient-to-b from-black to-black/90 flex justify-center items-center">
+        <div className="text-white flex justify-center items-center flex-col text-center gap-2">
+
+          <div className="text-5xl font-extrabold bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent">
+            ItsMe Prince Shop
+          </div>
+
+          <div className="font-extralight text-sm w-[500px] animate-pulse">
+            A place where you can purchase in-game items for cheap! Purchase items, earn referral tickets and use those tickets to get discount on your next purchase!!
+          </div>
+
+          <button className="bg-white text-black p-2 rounded-md px-4 text-sm hover:scale-105 transition-all ease-in-out duration-300 hover:bg-gradient-to-r from-purple-600 to-purple-500 hover:shadow-lg hover:shadow-purple-600/40 hover:text-white">
+            <Link
+              href="https://discord.gg/spHgh4PGzF"
+              target="_blank">
+              Discord Server
+            </Link>
+          </button>
+        </div>
       </div>
 
       {/* Page 2 */}
-      <div className="h-screen bg-slate-700">
-        <div className="h-screen bg-slate-700 flex justify-center items-center">
-          <div className="bg-white p-5 rounded-xl shadow-lg">
-            <h1 className="text-xl font-bold text-center mb-4">User Rankings</h1>
-            <table className="min-w-full border border-gray-300">
-              <thead>
-                <tr className="bg-gray-200">
-                  <th className="border p-2">User ID</th>
-                  <th className="border p-2">PP Cash</th>
-                  <th className="border p-2">Refer Tickets</th>
-                  <th className="border p-2">Total Purchases</th>
-                  <th className="border p-2">Total Referred</th>
-                  <th className="border p-2">SPV</th>
+      <div ref={page2Ref} className="h-screen bg-gradient-to-t from-black to-black/90 flex justify-center items-center">
+
+        <div className="bg-gradient-to-b from-purple-500 to-purple-700 p-2 rounded-sm shadow-lg sm:w-auto w-[400px]">
+          <h1 className="text-xl font-bold text-center mb-2 text-white">SHOP LEADERBOARD</h1>
+          <table className="min-w-full border border-gray-300">
+            <thead>
+              <tr className="bg-black/80 text-white">
+                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[20px]">S.No</th>
+                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[200px]">Users</th>
+                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">PP Cash</th>
+                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">Referral Tickets</th>
+                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">Total Purchases</th>
+                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">Total Referred</th>
+                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">SPV</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, _id) => (
+                <tr key={user.id} className=" bg-black/50 text-white">
+                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[20px]">{_id + 1}</td>
+                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[200px]">{user.username}</td>
+                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px] text-green-500">{user.pp_cash}</td>
+                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px] text-orange-500">{user.refer_tickets}</td>
+                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">{user.total_purchases}</td>
+                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">{user.total_referred}</td>
+                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px] text-yellow-500">{user.spv}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr key={user.id} className="border-b">
-                    <td className="border p-2">{user.username}</td>
-                    <td className="border p-2">{user.pp_cash}</td>
-                    <td className="border p-2">{user.refer_tickets}</td>
-                    <td className="border p-2">{user.total_purchases}</td>
-                    <td className="border p-2">{user.total_referred}</td>
-                    <td className="border p-2 font-bold text-blue-600">{user.spv}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
       {/* Page 3 */}
-      <div className="h-screen bg-slate-600">
+      <div ref={page3Ref} className="h-screen bg-gradient-to-b from-black to-black/90 flex justify-center items-center">
+        <div className="grid sm:grid-cols-3 grid-cols-2  gap-5">
 
-      </div>
+          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold h-[130px]">
+              Available 24/7
+            </div>
+            <div className="text-lg">
+              I&apos;m always here to provide our game-services whenever you need them!
+            </div>
+          </div>
+
+          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold h-[130px]">
+              Scam-Proof Service
+            </div>
+            <div className="text-lg">
+              Your money is completely safe with me, and I&apos;m committed to fulfilling your orders!
+            </div>
+          </div>
+
+          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold h-[130px]">
+              Money-Back Guarantee
+            </div>
+            <div className="text-lg">
+              Enjoy a full refund if anything goes wrong—your satisfaction is my priority!
+            </div>
+          </div>
+
+          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold h-[130px]">
+              Wide Selection of Items
+            </div>
+            <div className="text-lg">
+              Explore a diverse range of products in my marketplace, carefully curated for you!
+            </div>
+          </div>
+
+          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold h-[130px]">
+              Fast & Reliable Delivery
+            </div>
+            <div className="text-lg">
+              I guarantee quick and hassle-free delivery, ensuring you get your orders on time!
+            </div>
+          </div>
+
+          <div className="sm:w-[250px] w-[220px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="text-4xl font-bold h-[130px]">
+              Dedicated Customer Support
+            </div>
+            <div className="text-lg">
+              Need help? I&apos;m personally here to assist you with any questions or concerns!
+            </div>
+          </div>
+
+        </div>
+
+      </div >
+
       {/* Page 4 */}
-      <div className="h-screen bg-slate-500">
-
+      <div ref={page4Ref} className="h-screen bg-gradient-to-t from-black to-black/90 flex flex-col justify-center items-center gap-2">
+        <div className="flex flex-col justify-center items-center gap-3">
+          <div className="text-center flex flex-col gap-2">
+            <div className="p-3 text-xl text-white font-extralight w-[400px] sm:w-[600px] border-b border-white/30">
+              You can watch the video in which I&apos;ve explained about this properly!
+            </div>
+            {/* Responsive YouTube Video */}
+            <div className="w-[400px] sm:w-[600px] aspect-video">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/fLheG3qV3xU?si=fZBh08AW8qimvEJ3"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
