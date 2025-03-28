@@ -106,25 +106,25 @@ export default function Home() {
           <table className="min-w-full border border-gray-300">
             <thead>
               <tr className="bg-black/80 text-white">
-                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[20px]">S.No</th>
-                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[200px]">Users</th>
-                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">PP Cash</th>
-                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">Referral Tickets</th>
-                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">Total Purchases</th>
-                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">Total Referred</th>
-                <th className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">SPV</th>
+                <th className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[20px] w-[10px]">S.No</th>
+                <th className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[200px] w-[60px]">Users</th>
+                <th className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px]">PP Cash</th>
+                <th className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px]">Referral Tickets</th>
+                <th className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px]">Total Purchases</th>
+                <th className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px]">Total Referred</th>
+                <th className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px]">SPV</th>
               </tr>
             </thead>
             <tbody>
               {users.map((user, _id) => (
                 <tr key={user.id} className=" bg-black/50 text-white">
-                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[20px]">{_id + 1}</td>
-                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[200px]">{user.username}</td>
-                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px] text-green-500">{user.pp_cash}</td>
-                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px] text-orange-500">{user.refer_tickets}</td>
-                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">{user.total_purchases}</td>
-                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px]">{user.total_referred}</td>
-                  <td className="sm:text-[15px] text-[10px] border border-purple-400 p-2 w-[80px] text-yellow-500">{user.spv}</td>
+                  <td className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[20px] w-[10px]">{_id + 1}</td>
+                  <td className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[200px] w-[40px]">{user.username}</td>
+                  <td className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px] text-green-500">{user.pp_cash}</td>
+                  <td className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px] text-orange-500">{user.refer_tickets}</td>
+                  <td className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px]">{user.total_purchases}</td>
+                  <td className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px]">{user.total_referred}</td>
+                  <td className="sm:text-[15px] text-[8px] border border-purple-400 p-2 sm:w-[80px] w-[40px] text-yellow-500">{user.spv}</td>
                 </tr>
               ))}
             </tbody>
@@ -136,56 +136,56 @@ export default function Home() {
       <div ref={page3Ref} className="h-screen bg-gradient-to-b from-black to-black/90 flex justify-center items-center">
         <div className="grid sm:grid-cols-3 grid-cols-2  gap-5">
 
-          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
+          <div className="sm:w-[250px] w-[150px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+            <div className="sm:text-4xl text-2xl font-bold sm:h-[130px] h-[122px]">
               Available 24/7
             </div>
-            <div className="text-lg">
+            <div className="sm:text-lg text-sm">
               I&apos;m always here to provide our game-services whenever you need them!
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
+          <div className="sm:w-[250px] w-[150px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+          <div className="sm:text-4xl text-2xl font-bold sm:h-[130px] h-[122px]">
               Scam-Proof Service
             </div>
-            <div className="text-lg">
+            <div className="sm:text-lg text-sm">
               Your money is completely safe with me, and I&apos;m committed to fulfilling your orders!
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
+          <div className="sm:w-[250px] w-[150px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+          <div className="sm:text-4xl text-2xl font-bold sm:h-[130px] h-[122px]">
               Money-Back Guarantee
             </div>
-            <div className="text-lg">
+            <div className="sm:text-lg text-sm">
               Enjoy a full refund if anything goes wrong—your satisfaction is my priority!
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
+          <div className="sm:w-[250px] w-[150px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+          <div className="sm:text-4xl text-2xl font-bold sm:h-[130px] h-[122px]">
               Wide Selection of Items
             </div>
-            <div className="text-lg">
+            <div className="sm:text-lg text-sm">
               Explore a diverse range of products in my marketplace, carefully curated for you!
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
+          <div className="sm:w-[250px] w-[150px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+          <div className="sm:text-4xl text-2xl font-bold sm:h-[130px] h-[122px]">
               Fast & Reliable Delivery
             </div>
-            <div className="text-lg">
+            <div className="sm:text-lg text-sm">
               I guarantee quick and hassle-free delivery, ensuring you get your orders on time!
             </div>
           </div>
 
-          <div className="sm:w-[250px] w-[200px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
-            <div className="text-4xl font-bold sm:h-[130px] h-[122px]">
+          <div className="sm:w-[250px] w-[150px] h-[280px] bg-gradient-to-b from-purple-500 to-purple-600 rounded-lg p-4 text-white hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 transition-all ease-in-out duration-300">
+          <div className="sm:text-4xl text-2xl font-bold sm:h-[130px] h-[122px]">
               Dedicated Customer Support
             </div>
-            <div className="text-lg">
+            <div className="sm:text-lg text-sm">
               Need help? I&apos;m personally here to assist you with any questions or concerns!
             </div>
           </div>
@@ -198,11 +198,11 @@ export default function Home() {
       <div ref={page4Ref} className="h-screen bg-gradient-to-t from-black to-black/90 flex flex-col justify-center items-center gap-2">
         <div className="flex flex-col justify-center items-center gap-3">
           <div className="text-center flex flex-col gap-2">
-            <div className="p-3 text-xl text-white font-extralight w-[400px] sm:w-[600px] border-b border-white/30">
+            <div className="p-3 text-xl text-white font-extralight w-[300px] sm:w-[600px] border-b border-white/30">
               You can watch the video in which I&apos;ve explained about this properly!
             </div>
             {/* Responsive YouTube Video */}
-            <div className="w-[400px] sm:w-[600px] aspect-video">
+            <div className="w-[300px] sm:w-[600px] aspect-video">
               <iframe
                 className="w-full h-full"
                 src="https://www.youtube.com/embed/fLheG3qV3xU?si=fZBh08AW8qimvEJ3"
