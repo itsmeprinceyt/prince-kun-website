@@ -16,6 +16,18 @@ interface User {
 }
 
 export default function Home() {
+
+  // Reload the page every 60 seconds because the
+  // database is not fetched instantly so we need to refresh the page
+  // once so I'm adding this so it will refresh automatically 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.location.reload();
+    }, 60000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const [users, setUsers] = useState<User[]>([]);
 
   const [activePage, setActivePage] = useState(1);
