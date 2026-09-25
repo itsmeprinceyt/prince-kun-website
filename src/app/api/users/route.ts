@@ -39,7 +39,7 @@ interface CacheClient {
 
 export async function GET(): Promise<NextResponse> {
   try {
-    initServer();
+    await initServer();
     const pool = db();
     const redis = getRedis() as unknown as CacheClient;
 
