@@ -1,11 +1,20 @@
 "use client";
 import { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
-import { fetchUsers, User } from "../utils/api";
 import MadeByMe from "./(components)/MadeByMe";
 
 const REFRESH_INTERVAL = 60_000; // 60 seconds
 const TOP_N = 15;
+
+interface User {
+  user_id: string;
+  pp_cash: number;
+  refer_tickets: number;
+  total_purchases: number;
+  total_referred: number;
+  spv: string;
+  username: string;
+}
 
 /** Compare two user arrays by value. */
 const usersEqual = (a: User[], b: User[]): boolean => {
@@ -14,13 +23,13 @@ const usersEqual = (a: User[], b: User[]): boolean => {
     const x = a[i];
     const y = b[i];
     if (
-      x.id !== y.id ||
+      x.user_id !== y.user_id ||
       x.username !== y.username ||
       x.pp_cash !== y.pp_cash ||
       x.refer_tickets !== y.refer_tickets ||
       x.total_purchases !== y.total_purchases ||
       x.total_referred !== y.total_referred ||
-      x.spv !== y.spv
+      Number(x.spv) !== Number(y.spv)
     ) {
       return false;
     }
@@ -30,7 +39,7 @@ const usersEqual = (a: User[], b: User[]): boolean => {
 
 /** Sort by spv desc and keep top N. */
 const normalizeUsers = (data: User[]): User[] =>
-  [...data].sort((a, b) => b.spv - a.spv).slice(0, TOP_N);
+  [...data].sort((a, b) => Number(b.spv) - Number(a.spv)).slice(0, TOP_N);
 
 export default function Home() {
   const [users, setUsers] = useState<User[]>([]);
@@ -45,7 +54,9 @@ export default function Home() {
   // --- Data fetch + polling with diff-based update ---
   const loadUsers = useCallback(async () => {
     try {
-      const data = await fetchUsers();
+      const res = await fetch("/api/users", { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data: User[] = await res.json();
       const next = normalizeUsers(data);
 
       // Only trigger a re-render if the data actually changed.
@@ -264,7 +275,7 @@ export default function Home() {
                   {!loading &&
                     users.map((user, index) => (
                       <tr
-                        key={user.id}
+                        key={user.user_id}
                         className="border-b border-white/5 text-white/90 transition-colors hover:bg-purple-500/10"
                       >
                         <td className="p-2.5 sm:p-3 text-center text-[11px] sm:text-sm">
