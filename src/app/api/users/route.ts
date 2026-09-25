@@ -5,6 +5,7 @@ import {
   fallbackUsername,
   resolveUsernames,
 } from "../../../lib/discord.service";
+import { getProduction } from "../../../utils/getProduction.util";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -80,9 +81,13 @@ export async function GET(): Promise<NextResponse> {
 
     // 4. Store the whole payload under one key with TTL.
     try {
-      await redis.set(CACHE_KEY, JSON.stringify(payload), {
-        ex: CACHE_TTL_SECONDS,
-      });
+      await redis.set(
+        `${CACHE_KEY}:${getProduction()}`,
+        JSON.stringify(payload),
+        {
+          ex: CACHE_TTL_SECONDS,
+        },
+      );
     } catch (err) {
       console.error("[ API ] redis SET failed:", err);
     }
